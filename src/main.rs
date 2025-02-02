@@ -34,6 +34,7 @@ fn main() {
     let output = match args.day {
         1 => days::day1::solve(&content, args.part_two),
         2 => days::day2::solve(&content, args.part_two),
+        3 => days::day3::solve(&content, args.part_two),
         _ => format!("Day {} not solved yet", args.day),
     };
 
