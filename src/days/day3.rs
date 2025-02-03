@@ -10,8 +10,9 @@ pub fn solve(input: &str, second_part: bool) -> String {
     let neg = Regex::new(r"don't\(\)").expect("Failed to compile regex");
     let pos = Regex::new(r"do\(\)").expect("Failed to compile regex");
     let stops: Vec<usize> = neg.find_iter(input).map(|c| c.start()).collect();
-    let mut starts: Vec<usize> = pos.find_iter(input).map(|c| c.start()).collect();
-    starts.insert(0, 0usize);
+    let starts: Vec<usize> = std::iter::once(0)
+        .chain(pos.find_iter(input).map(|m| m.start()))
+        .collect();
 
     let ranges: Vec<Range<usize>> = starts
         .into_iter()
